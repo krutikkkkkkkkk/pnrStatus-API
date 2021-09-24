@@ -1,0 +1,32 @@
+{
+  "name": "pnrstatus",
+  "version": "1.0.0",
+  "description": "Check PNR Status",
+  "main": "main.js",
+  "scripts": {
+    "test": "npm run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reboot13-git/pnrStatus.git"
+  },
+  "keywords": [
+    "pnr",
+    "status",
+    "pnr",
+    "train",
+    "ticket",
+    "reboot13-git"
+  ],
+  "author": "reboot13_dev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/reboot13-git/pnrStatus/issues"
+  },
+  "homepage": "https://github.com/reboot13-git/pnrStatus#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "jsdom": "^17.0.0",
+    "node-fetch": "^2.6.1"
+  }
+}
