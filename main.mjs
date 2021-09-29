@@ -1,7 +1,7 @@
 import express from 'express'
 const app = express()
 import fetch from 'node-fetch'
-import { load } from 'cheerio'
+import * as cheerio from 'cheerio'
 import { resolve } from 'path'
 const PORT = 3000 || process.env.PORT
 
@@ -21,18 +21,18 @@ app.get('/pnr/:PNR', (req, res)=> {
      fetch(url)
     .then(response => response.text())
     .then(data => {
-        console.log(data)
-        const $ = load(data)
+        const $ = cheerio.load(data)
     
         // Extract the Script
-        const scriptData = $('script').get()[8].children[0].data;
+        const scriptData = $.html()
         console.log(scriptData)
         
         // Extract the variable
         const output = scriptData.match(/(var data = )(.*)(;)/)[0];
         
         // Parse the value
-        console.log(JSON.parse(output.slice(11,output.length - 1)))
+        const value = JSON.parse(output.slice(11,output.length - 1))
+        res.send(value)
     })
     .catch(err=> {
         let result = {
