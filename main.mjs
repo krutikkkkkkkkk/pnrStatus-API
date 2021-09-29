@@ -1,10 +1,10 @@
-import express from 'express'
-import fetch from 'node-fetch'
-import * as cheerio from 'cheerio'
-import { resolve } from 'path'
+import express from 'express';
+import fetch from 'node-fetch';
+import * as cheerio from 'cheerio';
+import { resolve } from 'path';
 
-const app = express()
-const PORT = 3000 || process.env.PORT
+const app = express();
+const PORT = 3000 || process.env.PORT;
 
 app.get('/', (req, res) => {
     res.sendFile(resolve('./index.html'));
@@ -17,25 +17,25 @@ app.get('/index.html', (req, res) => {
 ///Api route
 app.get('/api', (req, res)=> {
     //Get PNR from Form Data
-    let PNR = req.query.PNR
+    let PNR = req.query.PNR;
 
-    const url = `https://www.confirmtkt.com/pnr-status/${PNR}?`
+    const url = `https://www.confirmtkt.com/pnr-status/${PNR}?`;
    try{
      fetch(url)
     .then(response => response.text())
     .then(data => {
-        const $ = cheerio.load(data)
-        const scriptData = $.html()
+        const $ = cheerio.load(data);
+        const scriptData = $.html();
         const output = scriptData.match(/(var data = )(.*)(;)/)[0];
-        const value = JSON.parse(output.slice(11,output.length - 1))
-        res.send(value)
+        let value = JSON.parse(output.slice(11,output.length - 1));
+        res.send(value);
     })
     .catch(err=> {
         let result = {
             "result": false,
             "error": err.message
         }
-        res.send(result)
+        res.send(result);
     })
 }
    catch(err){
@@ -43,7 +43,7 @@ app.get('/api', (req, res)=> {
            "result": false,
            "error": err.message
        }
-       res.send(result)
+       res.send(result);
 
    }
 })
@@ -52,3 +52,5 @@ app.get('/api', (req, res)=> {
 app.listen(PORT, () => {
   console.log(`Example app listening at http://localhost:${PORT}`)
 })
+
+
