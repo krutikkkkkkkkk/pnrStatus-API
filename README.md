@@ -1,4 +1,4 @@
-# PNR Status API (IRTC)
+# PNR Status API (IRCTC)
 
 Check ticket information using PNR number
 
