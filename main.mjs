@@ -28,6 +28,14 @@ app.get('/api', (req, res)=> {
         const scriptData = $.html();
         const output = scriptData.match(/(var data = )(.*)(;)/)[0];
         let value = JSON.parse(output.slice(11,output.length - 1));
+
+        delete value["ShowBlaBlaAd"]
+        delete value["ShowCab"]
+        delete value["Ads"]
+        delete value["WebsiteEvents"]
+        delete value["WebsiteAds"]
+        delete value["SponsoredButtons"]
+        delete value["Ads"]
         res.send(value);
     })
     .catch(err=> {
@@ -52,5 +60,3 @@ app.get('/api', (req, res)=> {
 app.listen(PORT, () => {
   console.log(`Example app listening at http://localhost:${PORT}`)
 })
-
-
