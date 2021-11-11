@@ -15,9 +15,11 @@ app.get('/index.html', (req, res) => {
 })
 
 ///Api route
-app.get('/api', (req, res)=> {
+app.get('/api/:PNR', (req, res)=> {
     //Get PNR from Form Data
-    let PNR = req.query.PNR;
+
+    //let PNR = req.query.PNR;
+    let PNR = req.params.PNR
 
     const url = `https://www.confirmtkt.com/pnr-status/${PNR}?`;
    try{
