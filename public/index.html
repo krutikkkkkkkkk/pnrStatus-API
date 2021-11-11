@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PNR Status</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+body{display: flex;justify-content: center; align-items: center; background-color: #222;color: #fff;padding-top: 1rem;   flex-direction: column; font-family: monospace;}
+h1{color: #05d15a;}
+footer{margin-top: 2rem;position: absolute;bottom: 0;}
+.form{display: flex;flex-direction: column;}
+.form-text { color: #d0d6db;}
+.btn-primary{ background-color: #05d15a!important;}
+    </style>
+</head>
+<body>
+<h1>PNR Status</h1>
+    <div class="form">
+        <label for="endpoint">Endpoint: <pre>api?PNR={PNR}</pre></label>
+        <div class="mb-3">
+          <label for="PNR" class="form-label">PNR</label>
+          <input type="text" class="form-control" id="PNR" name="PNR">
+          <div class="form-text">Make sure your PNR is generated/Not Flushed</div>
+        </div>
+        
+        <input id="submit" type="submit" class="btn btn-primary" value="Check Status">
+    </div>
+      <footer>
+          <p>Data Scrapped from <a href="https://confirmtkt.com/">confirmtkt.com</a></p>
+      </footer>  
+
+      <script>
+       const submit = document.getElementById('submit')
+       let pnr = document.getElementById('PNR')
+       submit.addEventListener('click' , ()=> {
+           console.log(pnr.value)
+           window.location.href = `api/${pnr.value}`
+       })
+      </script>
+</body>
+</html>
