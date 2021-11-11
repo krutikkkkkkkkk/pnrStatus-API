@@ -2,7 +2,7 @@
     "version" :2,
     "builds": [
         {
-            "src": "./main.mjs",
+            "src": "main.js",
             "use": "@now/node"
         }
     ],
@@ -13,7 +13,7 @@
         },
         {
             "src": "/",
-            "dest": "./index.html"
+            "dest": "index.html"
         }
     ]
 
