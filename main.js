@@ -4,9 +4,8 @@ import * as cheerio from 'cheerio';
 import { resolve } from 'path';
 import cors from 'cors';
 
-app.use(cors())
-
 const app = express();
+app.use(cors())
 const PORT = 3000 || process.env.PORT;
 
 app.get('/', (req, res) => {
