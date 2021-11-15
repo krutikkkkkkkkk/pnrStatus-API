@@ -2,16 +2,19 @@ import express from 'express';
 import fetch from 'node-fetch';
 import * as cheerio from 'cheerio';
 import { resolve } from 'path';
+import cors from 'cors';
+
+app.use(cors())
 
 const app = express();
 const PORT = 3000 || process.env.PORT;
 
 app.get('/', (req, res) => {
-    res.sendFile(resolve('./index.html'));
+    res.sendFile(resolve('./public/index.html'));
 })
 
 app.get('/index.html', (req, res) => {
-    res.sendFile(resolve('./index.html'));
+    res.sendFile(resolve('./public/index.html'));
 })
 
 ///Api route
@@ -38,14 +41,14 @@ app.get('/api/:PNR', (req, res)=> {
         delete value["WebsiteAds"]
         delete value["SponsoredButtons"]
         delete value["Ads"]
-        res.send(value);
+        res.json(value);
     })
     .catch(err=> {
         let result = {
             "result": false,
             "error": err.message
         }
-        res.send(result);
+        res.json(result);
     })
 }
    catch(err){
@@ -53,7 +56,7 @@ app.get('/api/:PNR', (req, res)=> {
            "result": false,
            "error": err.message
        }
-       res.send(result);
+       res.json(result);
 
    }
 })
